@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// Service
+import { TodoListService } from './todo-list.service';
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
   }
@@ -19,8 +22,24 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   addTodo(inputRef: HTMLInputElement): void {
-    console.log(inputRef.value);
-    inputRef.value = '';
+
+    const todo = inputRef.value.trim();
+
+    if (todo) {
+      this.todoListService.add(todo);
+      inputRef.value = '';
+    }
+
+  }
+
+  /**
+   * 取得待辦事項清單
+   *
+   * @returns {string[]}
+   * @memberof TodoListComponent
+   */
+  getList(): string[] {
+    return this.todoListService.getList();
   }
 
 }

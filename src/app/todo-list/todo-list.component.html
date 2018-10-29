@@ -10,4 +10,18 @@
     >
   </header>
 
+  <section class="main" *ngIf="getList().length">
+
+    <ul class="todo-list">
+      <li *ngFor="let todo of getList()">
+        <div class="view">
+          <input class="toggle" type="checkbox">
+          <label>{{ todo }}</label>
+          <button class="destroy"></button>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+
 </section>
