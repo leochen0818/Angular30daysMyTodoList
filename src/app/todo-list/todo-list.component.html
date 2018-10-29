@@ -6,6 +6,7 @@
       class="new-todo"
       placeholder="What needs to be done?"
       autofocus
+      (keyup.enter)="addTodo($event.target)"
     >
   </header>
 
