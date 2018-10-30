@@ -13,11 +13,18 @@
   <section class="main" *ngIf="getList().length">
 
     <ul class="todo-list">
-      <li *ngFor="let todo of getList()">
+      <li
+        *ngFor="let todo of getList()"
+        [class.completed]="todo.done"
+      >
         <div class="view">
-          <input class="toggle" type="checkbox">
-          <label>{{ todo }}</label>
-          <button class="destroy"></button>
+          <input
+            class="toggle"
+            type="checkbox"
+            (click)="todo.toggleCompletion()"
+            [checked]="todo.done"
+          >
+          <label>{{ todo.getTitle() }}</label>
         </div>
       </li>
     </ul>
