@@ -35,8 +35,16 @@ export class TodoListService {
       this.list.push(new Todo(title));
     }
 
-    }
+  }
 
+  /**
+   * 移除待辦事項
+   *
+   * @param {number} index - 待辦事項的索引位置
+   * @memberof TodoListService
+   */
+  remove(index: number): void {
+    this.list.splice(index, 1);
   }
 
 }

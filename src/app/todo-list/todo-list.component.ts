@@ -45,4 +45,14 @@ export class TodoListComponent implements OnInit {
     return this.todoListService.getList();
   }
 
+  /**
+   * 移除待辦事項
+   *
+   * @param {number} index - 待辦事項的索引位置
+   * @memberof TodoListComponent
+   */
+  remove(index: number): void {
+    this.todoListService.remove(index);
+  }
+
 }

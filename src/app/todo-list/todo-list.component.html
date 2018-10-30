@@ -14,7 +14,7 @@
 
     <ul class="todo-list">
       <li
-        *ngFor="let todo of getList()"
+        *ngFor="let todo of getList(); let i = index"
         [class.completed]="todo.done"
       >
         <div class="view">
@@ -25,6 +25,10 @@
             [checked]="todo.done"
           >
           <label>{{ todo.getTitle() }}</label>
+          <button
+            class="destroy"
+            (click)="remove(i)"
+          ></button>
         </div>
       </li>
     </ul>
