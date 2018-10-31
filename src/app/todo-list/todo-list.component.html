@@ -10,7 +10,10 @@
     >
   </header>
 
-  <section class="main" *ngIf="getList().length">
+  <section
+    class="main"
+    *ngIf="getList().length"
+  >
 
     <ul class="todo-list">
       <li
@@ -45,7 +48,10 @@
 
   </section>
 
-  <footer class="footer" *ngIf="getList().length">
+  <footer
+    class="footer"
+    *ngIf="getList().length"
+  >
     <span class="todo-count">
       <strong>{{ getRemainingList().length }}</strong>
       {{ getRemainingList().length ? 'item' : 'items'}} left
