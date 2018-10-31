@@ -47,4 +47,15 @@ export class TodoListService {
     this.list.splice(index, 1);
   }
 
+  /**
+   * 取得已完成/未完成的清單
+   *
+   * @param {boolean} completed - 要取得已完成還是未完成的清單
+   * @returns {Todo[]}
+   * @memberof TodoListService
+   */
+  getWithCompleted(completed: boolean): Todo[] {
+    return this.list.filter(todo => todo.done === completed);
+  }
+
 }
