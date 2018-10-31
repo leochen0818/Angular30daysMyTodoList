@@ -100,4 +100,14 @@ export class Todo {
     this.title = title;
   }
 
+  /**
+   * 設定是否完成
+   *
+   * @param {boolean} completed
+   * @memberof Todo
+   */
+  setCompleted(completed: boolean): void {
+    this.completed = completed;
+  }
+
 }

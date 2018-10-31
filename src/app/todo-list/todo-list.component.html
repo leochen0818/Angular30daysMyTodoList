@@ -12,8 +12,19 @@
 
   <section
     class="main"
-    *ngIf="getList().length"
+    *ngIf="getAllList().length"
   >
+
+    <input
+      id="toggle-all"
+      class="toggle-all"
+      type="checkbox"
+      *ngIf="getAllList().length"
+      #toggleall
+      [checked]="allCompleted()"
+      (click)="setAllTo(toggleall.checked)"
+    >
+    <label for="toggle-all"></label>
 
     <ul class="todo-list">
       <li
@@ -50,7 +61,7 @@
 
   <footer
     class="footer"
-    *ngIf="getList().length"
+    *ngIf="getAllList().length"
   >
 
     <span class="todo-count">
