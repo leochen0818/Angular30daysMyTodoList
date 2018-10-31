@@ -52,10 +52,46 @@
     class="footer"
     *ngIf="getList().length"
   >
+
     <span class="todo-count">
       <strong>{{ getRemainingList().length }}</strong>
       {{ getRemainingList().length ? 'item' : 'items'}} left
     </span>
+
+    <ul class="filters">
+
+      <li>
+        <a
+         href="javascript:;"
+         [class.selected]="checkStatus(todoStatusType.All)"
+         (click)="setStatus(todoStatusType.All)"
+        >
+          All
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="javascript:;"
+          [class.selected]="checkStatus(todoStatusType.Active)"
+          (click)="setStatus(todoStatusType.Active)"
+        >
+          Active
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="javascript:;"
+          [class.selected]="checkStatus(todoStatusType.Completed)"
+          (click)="setStatus(todoStatusType.Completed)"
+        >
+          Completed
+        </a>
+      </li>
+
+    </ul>
+
 	</footer>
 
 </section>

@@ -6,12 +6,30 @@ import { TodoListService } from './todo-list.service';
 // Class
 import { Todo } from './todo.model';
 
+// Enum
+import { TodoStatusType } from './todo-status-type.enum';
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+
+  /**
+   * 待辦事項狀態的列舉
+   *
+   * @memberof TodoListComponent
+   */
+  todoStatusType = TodoStatusType;
+
+  /**
+   * 目前狀態
+   *
+   * @private
+   * @memberof TodoListComponent
+   */
+  private status = TodoStatusType.All;
 
   constructor(private todoListService: TodoListService) { }
 
@@ -42,7 +60,27 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   getList(): Todo[] {
-    return this.todoListService.getList();
+
+    let list: Todo[] = [];
+
+    switch (this.status) {
+
+      case TodoStatusType.Active:
+        list = this.getRemainingList();
+        break;
+
+      case TodoStatusType.Completed:
+        list = this.getCompletedList();
+        break;
+
+      default:
+        list = this.todoListService.getList();
+        break;
+
+    }
+
+    return list;
+
   }
 
   /**
@@ -110,4 +148,36 @@ export class TodoListComponent implements OnInit {
   getRemainingList(): Todo[] {
     return this.todoListService.getWithCompleted(false);
   }
+
+  /**
+   * 取得已完成的待辦事項
+   *
+   * @returns {Todo[]}
+   * @memberof TodoListComponent
+   */
+  getCompletedList(): Todo[] {
+    return this.todoListService.getWithCompleted(true);
+  }
+
+  /**
+   * 設定狀態
+   *
+   * @param {number} status - 欲設定的狀態
+   * @memberof TodoListComponent
+   */
+  setStatus(status: number): void {
+    this.status = status;
+  }
+
+  /**
+   * 檢查目前狀態
+   *
+   * @param {number} status - 欲檢查的狀態
+   * @returns {boolean}
+   * @memberof TodoListComponent
+   */
+  checkStatus(status: number): boolean {
+    return this.status === status;
+  }
+
 }
