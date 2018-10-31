@@ -180,4 +180,13 @@ export class TodoListComponent implements OnInit {
     return this.status === status;
   }
 
+  /**
+   * 從清單中移除所有已完成之待辦事項
+   *
+   * @memberof TodoListComponent
+   */
+  removeCompleted(): void {
+    this.todoListService.removeCompleted();
+  }
+
 }

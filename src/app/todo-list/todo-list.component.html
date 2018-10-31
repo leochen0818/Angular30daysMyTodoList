@@ -92,6 +92,14 @@
 
     </ul>
 
+    <button
+      class="clear-completed"
+      *ngIf="getCompletedList().length"
+      (click)="removeCompleted()"
+    >
+      Clear completed
+    </button>
+
 	</footer>
 
 </section>

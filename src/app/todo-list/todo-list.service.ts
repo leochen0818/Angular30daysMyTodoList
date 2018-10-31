@@ -48,6 +48,15 @@ export class TodoListService {
   }
 
   /**
+   * 從清單中移除所有已完成之待辦事項
+   *
+   * @memberof TodoListService
+   */
+  removeCompleted(): void {
+    this.list = this.getWithCompleted(false);
+  }
+
+  /**
    * 取得已完成/未完成的清單
    *
    * @param {boolean} completed - 要取得已完成還是未完成的清單
