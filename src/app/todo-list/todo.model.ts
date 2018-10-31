@@ -23,6 +23,14 @@ export class Todo {
   private completed = false;
 
   /**
+   * 是否處於編輯模式
+   *
+   * @private
+   * @memberof Todo
+   */
+  private editMode = false;
+
+  /**
    * Creates an instance of Todo.
    *
    * @param {string} title - 待辦事項的名稱
@@ -44,6 +52,26 @@ export class Todo {
   }
 
   /**
+   * 取得此事項是否處於編輯模式
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberof Todo
+   */
+  get editing(): boolean {
+    return this.editMode;
+  }
+
+  /**
+   * 設定此事項是否可被編輯
+   *
+   * @memberof Todo
+   */
+  set editable(bl: boolean) {
+    this.editMode = bl;
+  }
+
+  /**
    * 取得事項名稱
    *
    * @returns {string}
@@ -60,6 +88,16 @@ export class Todo {
    */
   toggleCompletion(): void {
     this.completed = !this.completed;
+  }
+
+  /**
+   * 設定事項名稱
+   *
+   * @param {string} title
+   * @memberof Todo
+   */
+  setTitle(title: string): void {
+    this.title = title;
   }
 
 }
