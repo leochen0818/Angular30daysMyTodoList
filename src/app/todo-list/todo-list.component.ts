@@ -55,4 +55,50 @@ export class TodoListComponent implements OnInit {
     this.todoListService.remove(index);
   }
 
+  /**
+   * 開始編輯待辦事項
+   *
+   * @param {Todo} todo
+   * @memberof TodoListComponent
+   */
+  edit(todo: Todo): void {
+    todo.editable = true;
+  }
+
+  /**
+   * 更新待辦事項
+   *
+   * @param {Todo} todo - 原本的待辦事項
+   * @param {string} newTitle - 新的事項名稱
+   * @memberof TodoListComponent
+   */
+  update(todo: Todo, newTitle: string): void {
+
+    const title = newTitle.trim();
+
+    // 如果有輸入名稱則修改事項名稱
+    if (title) {
+      todo.setTitle(title);
+      todo.editable = false;
+
+    // 如果沒有名稱則刪除該項待辦事項
+    } else {
+      const index = this.getList().indexOf(todo);
+      if (index !== -1) {
+        this.remove(index);
+      }
+    }
+
+  }
+
+  /**
+   * 取消編輯狀態
+   *
+   * @param {Todo} todo - 欲取消編輯狀態的待辦事項
+   * @memberof TodoListComponent
+   */
+  cancelEditing(todo: Todo): void {
+    todo.editable = false;
+  }
+
 }
